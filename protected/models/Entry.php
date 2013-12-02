@@ -115,4 +115,15 @@ class Entry extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+    public function findRandom(array $params = array()) {
+        $sql = "SELECT * FROM {$this->tableName()} JOIN 
+            (SELECT CEIL(RAND() *
+                (SELECT MAX(id)
+                    FROM {$this->tableName()})) AS id
+            ) AS rnd
+            USING (id)";
+        return self::model()->findBySql($query, $params);
+    }
+
 }
