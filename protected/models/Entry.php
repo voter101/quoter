@@ -117,13 +117,18 @@ class Entry extends CActiveRecord
 	}
 
     public function findRandom(array $params = array()) {
-        $sql = "SELECT * FROM {$this->tableName()} JOIN 
+        $query = "SELECT * FROM {$this->tableName()} JOIN 
             (SELECT CEIL(RAND() *
                 (SELECT MAX(id)
                     FROM {$this->tableName()})) AS id
             ) AS rnd
             USING (id)";
-        return self::model()->findBySql($query, $params);
+        for ($i = 0; $i < 5; $i++) {
+            $result = self::model()->findBySql($query, $params);
+            if ($result !== null)
+                return $result;
+        }
+        return null;
     }
 
 }
