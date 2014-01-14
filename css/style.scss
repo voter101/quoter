@@ -1,0 +1,74 @@
+@import "reset.scss";
+
+/* Utils */
+$goldenRatio: 1.618;
+/* Font sizes */
+$headerFont: 32px;
+$navFont: 18px;
+$bodyFont: 16px;
+/* Line heights */
+$lineHeightHeader: $headerFont * $goldenRatio;
+$lineHeightNav: $navFont * $goldenRatio;
+$lineHeightBody: $bodyFont * $goldenRatio;
+/* Colors */
+$bodyColor: #000;
+$linkColor: #000;
+
+html, body {
+  background: #eee;
+}
+
+* {
+  color: $bodyColor;
+  font-size: $bodyFont;
+  line-height: $lineHeightBody;
+  a {
+    color: $linkColor;
+    text-decoration: none;
+  }
+}
+
+#wrapper {
+  width: 860px;
+  display: block;
+  margin: 0 auto;
+}
+
+header {
+  position: relative;
+  margin: 30px 0;
+  h1 {
+    display: inline-block;
+    font-size: $headerFont;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  nav {
+    position: absolute;
+    display: inline-block;
+    right: 0;
+    * {
+      font-size: $navFont;
+    }
+    ul {
+      li {
+        display: inline;
+        padding: 0 8px;
+        a:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+#content {
+  display: block;
+  clear: both;
+  margin-bottom: 20px;
+}
+
+footer {
+  clear: both;
+  display: block;
+}
