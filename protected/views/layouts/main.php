@@ -8,21 +8,29 @@
 <body>
     <div id="wrapper">
         <header>
-            <?php echo CHtml::link("<h1>". Yii::app()->name ."</h1>", Yii::app()->request->baseUrl); ?>
+	        <?php echo CHtml::link("<h1>" . Yii::app()->name . "</h1>", Yii::app()->getBaseUrl(true)); ?>
+	        <nav>
+		        <?php
+		        $this->widget('zii.widgets.CMenu', array(
+			        'items' => array(
+				        array(
+					        'label' => Yii::t("menu.add", "Add entry"),
+					        'url' => array('/entry/add')),
+				        array(
+					        'label' => Yii::t("menu.new", "New entries"),
+					        'url' => array('/entry/new')),
+				        array(
+					        'label' => Yii::t("menu.top", "Top entries"),
+					        'url' => array('/entry/top')),
+				        array(
+					        'label' => Yii::t("menu.bottom", "Worst entries"),
+					        'url' => array('/entry/bottom')),
+				        array(
+					        'label' => Yii::t("menu.archive", "Old entries"),
+					        'url' => array('/entry/archive')),),));
+		        ?>
+	        </nav>
         </header>
-        <nav>
-            <?php
-            $this->widget('zii.widgets.CMenu', array(
-               'items' => array(
-                    array('label' => Yii::t("menu.add", "Add entry"), 'url' => array('/entry/add')),
-                    array('label' => Yii::t("menu.new", "New entries"), 'url' => array('/entry/new')),
-                    array('label' => Yii::t("menu.top", "Top entries"), 'url' => array('/entry/top')),
-                    array('label' => Yii::t("menu.bottom", "Worst entries"), 'url' => array('/entry/bottom')),
-                    array('label' => Yii::t("menu.archive", "Old entries"), 'url' => array('/entry/archive')),
-               ),
-            ));
-            ?>
-        </nav>
 	    <section id="content">
 		    <?php echo $content ?>
 	    </section>
