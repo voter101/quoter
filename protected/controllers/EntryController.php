@@ -135,7 +135,7 @@ class EntryController extends Controller {
 
 	public function actionIndex() {
 		$this->redirect(array(
-			'entry/viewByType',
+			'viewByType',
 			'type' => 'new'
 		));
 	}
