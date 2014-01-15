@@ -57,7 +57,7 @@ class EntryController extends Controller {
 		));
 	}
 
-	public function actionViewByType($type) {
+	public function actionViewByType($type = 'new') {
 		$criteriaArray = array();
 		switch ($type) {
 			case 'top':
@@ -106,6 +106,12 @@ class EntryController extends Controller {
 		));
 	}
 
+	public function actionAdd() {
+		$this->redirect(array(
+			'create',
+		));
+	}
+
 	public function actionUpdate($id) {
 		$model = $this->loadModel($id);
 
@@ -134,10 +140,7 @@ class EntryController extends Controller {
 	}
 
 	public function actionIndex() {
-		$this->redirect(array(
-			'viewByType',
-			'type' => 'new'
-		));
+		$this->forward('viewByType');
 	}
 
 	public function actionAdmin() {
