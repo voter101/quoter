@@ -19,19 +19,19 @@
 					),
 					array(
 						'label' => Yii::t("menu.new", "New entries"),
-						'url' => array('/entry/new')
+						'url' => array('/new')
 					),
 					array(
 						'label' => Yii::t("menu.top", "Top entries"),
-						'url' => array('/entry/top')
+						'url' => array('/top')
 					),
 					array(
 						'label' => Yii::t("menu.bottom", "Worst entries"),
-						'url' => array('/entry/bottom')
+						'url' => array('/bottom')
 					),
 					array(
 						'label' => Yii::t("menu.archive", "Old entries"),
-						'url' => array('/entry/archive')
+						'url' => array('/old')
 					),
 				),
 			));
