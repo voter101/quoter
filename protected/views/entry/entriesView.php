@@ -16,12 +16,8 @@
 	<?php echo CHtml::encode($data->content); ?>
 	<br/>
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('additional_content')); ?>:</b>
-	<?php echo CHtml::encode($data->additional_content); ?>
-	<br/>
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('created')); ?>:</b>
-	<?php echo CHtml::encode($data->created); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('modified')); ?>:</b>
+	<?php echo CHtml::encode($data->modified); ?>
 	<br/>
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('score')); ?>:</b>
