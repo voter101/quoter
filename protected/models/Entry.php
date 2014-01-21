@@ -7,6 +7,7 @@
  * @property integer $id
  * @property string $content
  * @property string $additional_content
+ * @property string $modified
  * @property string $created
  * @property integer $score
  * @property string $author
@@ -52,7 +53,7 @@ class Entry extends CActiveRecord {
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array(
-				'id, content, additional_content, created, score, author, type, deleted',
+				'id, content, additional_content, modified, score, author, type, deleted',
 				'safe',
 				'on' => 'search'
 			),
@@ -82,6 +83,7 @@ class Entry extends CActiveRecord {
 			'id' => 'ID',
 			'content' => 'Content',
 			'additional_content' => 'Additional Content',
+			'modified' => 'Modified',
 			'created' => 'Created',
 			'score' => 'Score',
 			'author' => 'Author',
@@ -110,7 +112,7 @@ class Entry extends CActiveRecord {
 		$criteria->compare('id', $this->id);
 		$criteria->compare('content', $this->content, true);
 		$criteria->compare('additional_content', $this->additional_content, true);
-		$criteria->compare('created', $this->created, true);
+		$criteria->compare('modified', $this->modified, true);
 		$criteria->compare('score', $this->score);
 		$criteria->compare('author', $this->author, true);
 		$criteria->compare('type', $this->type);

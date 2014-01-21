@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 21, 2014 at 10:46 AM
+-- Generation Time: Jan 21, 2014 at 11:12 AM
 -- Server version: 5.5.34-MariaDB-log
 -- PHP Version: 5.5.8
 
@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS `entry` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `content` text COLLATE utf8_bin NOT NULL,
   `additional_content` text COLLATE utf8_bin,
+  `modified` timestamp NULL DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `score` int(11) NOT NULL DEFAULT '0',
   `author` varchar(64) COLLATE utf8_bin DEFAULT NULL,
