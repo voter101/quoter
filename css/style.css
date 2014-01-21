@@ -98,6 +98,9 @@ header {
       header nav ul li a:hover {
         text-decoration: underline; }
 
+.entry {
+  margin-bottom: 20px; }
+
 #content {
   display: block;
   clear: both;
