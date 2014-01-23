@@ -9,4 +9,4 @@ $this->widget('zii.widgets.CListView', array(
 	'itemsTagName' => 'section',
 	'tagName' => 'section',
 	'template' => '{items}{pager}',
-)); ?>
+));
