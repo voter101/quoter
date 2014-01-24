@@ -2,26 +2,38 @@
 /* @var $this EntryController */
 /* @var $data Entry */
 ?>
-
 <article class="entry">
 
-	<?php echo CHtml::link(CHtml::encode('#' . $data->id), array(
-		'view',
-		'id' => $data->id
-	)); ?>
-	<br/>
-
-	<?php echo CHtml::encode($data->content); ?>
-	<br/>
-
-	<?php echo CHtml::encode($data->modified); ?>
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('score')); ?>:</b>
-	<?php echo CHtml::encode($data->score); ?>
-	<br/>
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('author')); ?>:</b>
-	<?php echo CHtml::encode($data->author); ?>
-	<br/>
+	<section class="info">
+		<span class="id">
+			<?php
+			echo CHtml::link(CHtml::encode('#' . $data->id), array(
+				'view',
+				'id' => $data->id
+			));
+			?>
+		</span>
+		<span class="score">
+			<?php echo CHtml::encode($data->score); ?>
+		</span>
+		<span class="datetime">
+			<?php
+			if ($data->modified == null) {
+				echo CHtml::encode($data->created);
+			} else {
+				echo CHtml::encode($data->modified);
+			}
+			?>
+		</span>
+	</section>
+	<p>
+		<?php echo nl2br(CHtml::encode($data->content)); ?>
+	</p>
+	<?php
+	if ($data->author) : ?>
+		<span class="author">
+				<?php echo CHtml::encode($data->author); ?>
+			</span>
+	<?php endif; ?>
 
 </article>

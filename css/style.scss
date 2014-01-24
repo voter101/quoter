@@ -63,7 +63,34 @@ header {
 }
 
 .entry {
-  margin-bottom:20px;
+  margin:0 auto;
+  margin-bottom: 20px;
+  width: 80%;
+  display: block;
+  position: relative;
+  .info {
+    display: block;
+    margin-bottom: 8px;
+    .id {
+      font-weight: bold;
+    }
+    .score {
+      position: relative;
+      left:80px;
+    }
+    .datetime {
+      float: right;
+    }
+  }
+  p {
+    width: 80%;
+    display: inline-block;
+  }
+  .author {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
 }
 
 #content {

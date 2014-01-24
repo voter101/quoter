@@ -99,7 +99,28 @@ header {
         text-decoration: underline; }
 
 .entry {
-  margin-bottom: 20px; }
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 80%;
+  display: block;
+  position: relative; }
+  .entry .info {
+    display: block;
+    margin-bottom: 8px; }
+    .entry .info .id {
+      font-weight: bold; }
+    .entry .info .score {
+      position: relative;
+      left: 80px; }
+    .entry .info .datetime {
+      float: right; }
+  .entry p {
+    width: 80%;
+    display: inline-block; }
+  .entry .author {
+    position: absolute;
+    right: 0;
+    bottom: 0; }
 
 #content {
   display: block;
