@@ -18,6 +18,10 @@
  * @property UserVote[] $userVotes
  */
 class Entry extends CActiveRecord {
+
+	// Types enums
+	const TEXT = 0;
+
 	/**
 	 * @return string the associated database table name
 	 */
