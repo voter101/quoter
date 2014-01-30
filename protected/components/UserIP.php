@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: voter101
- * Date: 30.01.14
- * Time: 11:05
- */
 
 class UserIP {
 
