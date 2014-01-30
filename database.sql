@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `entry` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
 
-CREATE TABLE IF NOT EXISTS `user_vote` (
+CREATE TABLE IF NOT EXISTS `entry_vote` (
   `id` int(11) NOT NULL,
   `ip` varchar(48) COLLATE utf8_bin NOT NULL,
   `possitive` tinyint(1) NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `user_vote` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
-ALTER TABLE `user_vote`
+ALTER TABLE `entry_vote`
   ADD CONSTRAINT `entry_id` FOREIGN KEY (`id`) REFERENCES `entry` (`id`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
