@@ -127,16 +127,6 @@ class Entry extends CActiveRecord {
 		));
 	}
 
-	/**
-	 * Returns the static model of the specified AR class.
-	 * Please note that you should have this exact method in all your CActiveRecord descendants!
-	 * @param string $className active record class name.
-	 * @return Entry the static model class
-	 */
-	public static function model($className = __CLASS__) {
-		return parent::model($className);
-	}
-
 	public function findRandom(array $params = array()) {
 		$query = "SELECT * FROM {$this->tableName()} JOIN
             (SELECT CEIL(RAND() *
@@ -151,6 +141,16 @@ class Entry extends CActiveRecord {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Returns the static model of the specified AR class.
+	 * Please note that you should have this exact method in all your CActiveRecord descendants!
+	 * @param string $className active record class name.
+	 * @return Entry the static model class
+	 */
+	public static function model($className = __CLASS__) {
+		return parent::model($className);
 	}
 
 }
