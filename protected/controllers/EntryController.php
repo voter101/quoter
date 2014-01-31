@@ -21,7 +21,8 @@ class EntryController extends Controller {
 				'actions' => array(
 					'index',
 					'view',
-					'viewByType'
+					'viewByType',
+					'vote'
 				),
 				'users' => array('*'),
 			),
@@ -164,7 +165,15 @@ class EntryController extends Controller {
 		if ($model == null) {
 			die();
 		}
-		$model->updateVote($positive);
+		$transaction = DbUtils::beginTransaction();
+		try {
+			$model->updateVote($positive);
+			$transaction->commit();
+		} catch (CDbException $e) {
+			$transaction->rollback();
+		} catch (ScoreHandlingException $e) {
+			$transaction->rollback();
+		}
 		echo json_encode($model->score);
 	}
 
