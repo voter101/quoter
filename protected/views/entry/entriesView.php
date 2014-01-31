@@ -33,7 +33,7 @@
 	if ($data->author) : ?>
 		<span class="author">
 				<?php echo CHtml::encode($data->author); ?>
-			</span>
+		</span>
 	<?php endif; ?>
 
 </article>
