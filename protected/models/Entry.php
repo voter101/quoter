@@ -15,7 +15,7 @@
  * @property integer $deleted
  *
  * The followings are the available model relations:
- * @property UserVote[] $userVotes
+ * @property EntryVote[] $entryVotes
  */
 class Entry extends CActiveRecord {
 
@@ -141,6 +141,67 @@ class Entry extends CActiveRecord {
 			}
 		}
 		return null;
+	}
+
+	public function updateVote($positive) {
+		$userIP = UserIP::getUserIP();
+		$previousVotes = EntryVote::model()->findAll('ip=:ip', array(
+			':ip' => $userIP));
+		if ($previousVotes == null) {
+			return $this->insertVote($positive, $userIP);
+		} elseif (count($previousVotes) > 1) {
+			// TODO Resolve situations like this. Idea: delete all votes from this ip and accpet only a new vote
+		} else {
+			return $this->updateScore($previousVotes[0], $positive);
+		}
+
+		return false; // In case any of if-statements didn't work
+	}
+
+	private function updateScore(EntryVote $previousVote, $positive) {
+		if ($positive != $previousVote->positive) {
+			$previousVote->positive = $positive;
+		} else {
+			return true;
+		}
+
+		$previousVote->save();
+		$this->handleScore($positive);
+
+		return true;
+	}
+
+	private function insertVote($positive, $ip) {
+		$vote = new EntryVote();
+		$vote->id = $this->id;
+		$vote->ip = $ip;
+		$vote->possitive = (int)$positive;
+		$vote->save();
+
+		if (!$vote->save()) {
+			throw new ScoreHandlingException("I can't save entry after inserting vote to database.");
+		}
+		$this->handleScore($positive);
+
+		return true;
+	}
+
+	private function handleScore($positive, $update = false) {
+		if ($update == true) {
+			$modifier = 2;
+		} else {
+			$modifier = 1;
+		}
+
+		if ($positive == 1) {
+			$this->score += $modifier;
+		} else {
+			$this->score -= $modifier;
+		}
+
+		if ($this->save() == false) {
+			throw new ScoreHandlingException("Couldn't save an entry after changing a score.");
+		}
 	}
 
 	/**
