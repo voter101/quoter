@@ -146,7 +146,8 @@ class Entry extends CActiveRecord {
 	public function updateVote($positive) {
 		$userIP = UserIP::getUserIP();
 		$previousVotes = EntryVote::model()->findAll('ip=:ip', array(
-			':ip' => $userIP));
+			':ip' => $userIP
+		));
 		if ($previousVotes == null) {
 			return $this->insertVote($positive, $userIP);
 		} elseif (count($previousVotes) > 1) {
@@ -154,7 +155,6 @@ class Entry extends CActiveRecord {
 		} else {
 			return $this->updateScore($previousVotes[0], $positive);
 		}
-
 		return false; // In case any of if-statements didn't work
 	}
 
@@ -167,7 +167,6 @@ class Entry extends CActiveRecord {
 
 		$previousVote->save();
 		$this->handleScore($positive);
-
 		return true;
 	}
 
@@ -175,7 +174,7 @@ class Entry extends CActiveRecord {
 		$vote = new EntryVote();
 		$vote->id = $this->id;
 		$vote->ip = $ip;
-		$vote->possitive = (int)$positive;
+		$vote->positive = (int)$positive;
 		$vote->save();
 
 		if (!$vote->save()) {
