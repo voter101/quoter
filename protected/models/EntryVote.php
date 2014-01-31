@@ -6,7 +6,7 @@
  * The followings are the available columns in table 'entry_vote':
  * @property integer $id
  * @property string $ip
- * @property integer $possitive
+ * @property integer $positive
  *
  * The followings are the available model relations:
  * @property Entry $id0
@@ -25,11 +25,11 @@ class EntryVote extends CActiveRecord {
 	public function rules() {
 		return array(
 			array(
-				'id, ip, possitive',
+				'id, ip, positive',
 				'required'
 			),
 			array(
-				'id, possitive',
+				'id, positive',
 				'numerical',
 				'integerOnly' => true
 			),
@@ -41,7 +41,7 @@ class EntryVote extends CActiveRecord {
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array(
-				'id, ip, possitive',
+				'id, ip, positive',
 				'safe',
 				'on' => 'search'
 			),
@@ -70,7 +70,7 @@ class EntryVote extends CActiveRecord {
 		return array(
 			'id' => 'ID',
 			'ip' => 'Ip',
-			'possitive' => 'Possitive',
+			'positive' => 'Positive',
 		);
 	}
 
@@ -93,7 +93,7 @@ class EntryVote extends CActiveRecord {
 
 		$criteria->compare('id', $this->id);
 		$criteria->compare('ip', $this->ip, true);
-		$criteria->compare('possitive', $this->possitive);
+		$criteria->compare('positive', $this->possitive);
 
 		return new CActiveDataProvider($this, array(
 			'criteria' => $criteria,
