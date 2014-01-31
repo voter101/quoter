@@ -155,9 +155,22 @@ class EntryController extends Controller {
 		));
 	}
 
-	public function loadModel($id) {
+	public function actionVote($id) {
+		if(!isset($_GET['positive'])) {
+			die();
+		}
+		$positive = (int)$_GET['positive'];
+		$model = $this->loadModel($id, false);
+		if ($model == null) {
+			die();
+		}
+		$model->updateVote($positive);
+		echo json_encode($model->score);
+	}
+
+	public function loadModel($id, $throwHTTPException = true) {
 		$model = Entry::model()->findByPk($id);
-		if ($model === null) {
+		if ($model === null && $throwHTTPException) {
 			throw new CHttpException(404, 'The requested page does not exist.');
 		}
 		return $model;
