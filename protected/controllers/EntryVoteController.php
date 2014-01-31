@@ -39,12 +39,4 @@ class EntryVoteController extends Controller {
 		$this->render('delete');
 	}
 
-	public function actionVoteDown() {
-		$this->render('voteDown');
-	}
-
-	public function actionVoteUp() {
-		$this->render('voteUp');
-	}
-
 }
