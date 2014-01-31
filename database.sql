@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `entry` (
 CREATE TABLE IF NOT EXISTS `entry_vote` (
   `id` int(11) NOT NULL,
   `ip` varchar(48) COLLATE utf8_bin NOT NULL,
-  `possitive` tinyint(1) NOT NULL,
+  `positive` tinyint(1) NOT NULL,
   KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
