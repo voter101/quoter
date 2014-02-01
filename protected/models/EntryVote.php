@@ -38,8 +38,6 @@ class EntryVote extends CActiveRecord {
 				'length',
 				'max' => 48
 			),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
 			array(
 				'id, ip, positive',
 				'safe',
@@ -52,8 +50,6 @@ class EntryVote extends CActiveRecord {
 	 * @return array relational rules.
 	 */
 	public function relations() {
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
 			'id0' => array(
 				self::BELONGS_TO,
@@ -75,20 +71,10 @@ class EntryVote extends CActiveRecord {
 	}
 
 	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 *
-	 * Typical usecase:
-	 * - Initialize the model fields with values from filter form.
-	 * - Execute this method to get CActiveDataProvider instance which will filter
-	 * models according to data in model fields.
-	 * - Pass data provider to CGridView, CListView or any similar widget.
-	 *
 	 * @return CActiveDataProvider the data provider that can return the models
 	 * based on the search/filter conditions.
 	 */
 	public function search() {
-		// @todo Please modify the following code to remove attributes that should not be searched.
-
 		$criteria = new CDbCriteria;
 
 		$criteria->compare('id', $this->id);
