@@ -4,15 +4,16 @@
  * This is the model class for table "entry".
  *
  * The followings are the available columns in table 'entry':
- * @property integer $id
- * @property string $content
- * @property string $additional_content
- * @property string $modified
- * @property string $created
- * @property integer $score
- * @property string $author
- * @property integer $type
- * @property integer $deleted
+ *
+ * @property integer     $id
+ * @property string      $content
+ * @property string      $additional_content
+ * @property string      $modified
+ * @property string      $created
+ * @property integer     $score
+ * @property string      $author
+ * @property integer     $type
+ * @property integer     $deleted
  *
  * The followings are the available model relations:
  * @property EntryVote[] $entryVotes
@@ -123,6 +124,7 @@ class Entry extends CActiveRecord {
 				return $result;
 			}
 		}
+
 		return null;
 	}
 
@@ -138,6 +140,7 @@ class Entry extends CActiveRecord {
 		} else {
 			return $this->updateScore($previousVotes[0], $positive);
 		}
+
 		return false; // In case any of if-statements didn't work
 	}
 
@@ -150,6 +153,7 @@ class Entry extends CActiveRecord {
 
 		$previousVote->save();
 		$this->handleScore($positive);
+
 		return true;
 	}
 
@@ -189,7 +193,9 @@ class Entry extends CActiveRecord {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
+	 *
 	 * @param string $className active record class name.
+	 *
 	 * @return Entry the static model class
 	 */
 	public static function model($className = __CLASS__) {

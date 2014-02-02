@@ -4,12 +4,13 @@
  * This is the model class for table "entry_vote".
  *
  * The followings are the available columns in table 'entry_vote':
+ *
  * @property integer $id
- * @property string $ip
+ * @property string  $ip
  * @property integer $positive
  *
  * The followings are the available model relations:
- * @property Entry $id0
+ * @property Entry   $id0
  */
 class EntryVote extends CActiveRecord {
 	/**
@@ -89,7 +90,9 @@ class EntryVote extends CActiveRecord {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
+	 *
 	 * @param string $className active record class name.
+	 *
 	 * @return EntryVote the static model class
 	 */
 	public static function model($className = __CLASS__) {
