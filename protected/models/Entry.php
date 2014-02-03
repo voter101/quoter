@@ -145,60 +145,7 @@ class Entry extends CActiveRecord {
 	}
 
 	public function updateVote($positive) {
-		$previousVotes = EntryVote::model()->findAll('ip=:ip AND entry_id=:id', array(
-			':ip' => UserIP::getUserIP(),
-		    ':id' => $this->id,
-		));
-		if ($previousVotes == null) {
-			return $this->insertVote($positive);
-		} elseif (count($previousVotes) > 1) {
-			// TODO Resolve situations like this. Idea: delete all votes from this ip and accept only a new vote
-		} else {
-			return $this->updateScore($previousVotes[0], $positive);
-		}
-
-		return false; // In case any of if-statements didn't work
-	}
-
-	private function updateScore(EntryVote $previousVote, $positive) {
-		if ($positive == $previousVote->positive) {
-			return true;
-		}
-
-		$previousVote->positive = $positive;
-		$previousVote->save();
-		$this->handleScore($positive, true);
-		$this->save();
-
-		return true;
-	}
-
-	private function insertVote($positive) {
-		$vote = new EntryVote();
-		$vote->entry_id = (int)$this->id;
-		$vote->ip = UserIP::getUserIP();
-		$vote->positive = (int)$positive;
-		$this->handleScore($positive);
-		$this->entryVotes = array($vote);
-		$this->saveWithRelated(array(
-			'entryVotes' => array('append' => true)
-		));
-
-		return true;
-	}
-
-	private function handleScore($positive, $update = false) {
-		if ($update == true) {
-			$modifier = 2;
-		} else {
-			$modifier = 1;
-		}
-
-		if ($positive == 1) {
-			$this->score += $modifier;
-		} else {
-			$this->score -= $modifier;
-		}
+		return Yii::app()->entryScoreManager->Vote($this, $positive);
 	}
 
 	/**

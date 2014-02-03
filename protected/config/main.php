@@ -55,6 +55,7 @@ return array(
 				),
 			),
 		),
+	    'entryScoreManager' => array('class'  => 'EntryScoreManager'),
 	),
 
 	'params' => array(
