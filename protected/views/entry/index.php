@@ -4,7 +4,7 @@
 
 $this->widget('zii.widgets.CListView', array(
 	'dataProvider' => $dataProvider,
-	'itemView' => 'entriesView',
+	'itemView' => 'entry',
 	'itemsCssClass' => 'entries',
 	'itemsTagName' => 'section',
 	'tagName' => 'section',
