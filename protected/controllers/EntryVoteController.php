@@ -16,8 +16,7 @@ class EntryVoteController extends Controller {
 			array(
 				'allow',
 				'actions' => array(
-					'voteUp',
-					'voteDown',
+					'test',
 				),
 				'users' => array('*'),
 			),
@@ -37,6 +36,16 @@ class EntryVoteController extends Controller {
 
 	public function actionDelete() {
 		$this->render('delete');
+	}
+
+	public function actionTest() {
+		$entry = Entry::model()->findByPk(1);
+		$vote = new EntryVote;
+		$vote->entry_id = 1;
+		$vote->ip = "127.0.0.1";
+		$vote->positive = 1;
+		$vote->save();
+		var_dump($vote);
 	}
 
 }
