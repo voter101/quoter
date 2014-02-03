@@ -20,12 +20,12 @@ class EntryScoreManager extends CComponent {
 		if ($previousVotes == null) {
 			return $this->insertVote($positive);
 		} elseif (count($previousVotes) > 1) {
-			// TODO Resolve situations like this. Idea: delete all votes from this ip and accept only a new vote
+			$this->resolveMultipleVotesScore($previousVotes);
+
+			return $this->Vote($this->_entry, $positive);
 		} else {
 			return $this->updateScore($previousVotes[0], $positive);
 		}
-
-		return false; // In case any of if-statements didn't work
 	}
 
 	private function getPreviousVotes() {
@@ -47,6 +47,19 @@ class EntryScoreManager extends CComponent {
 		));
 
 		return true;
+	}
+
+	private function resolveMultipleVotesScore(array $previousVotes) {
+		$votesSum = 0;
+		foreach ($previousVotes as $vote) {
+			if ($vote->positive == 1) {
+				$votesSum++;
+			} else {
+				$votesSum--;
+			}
+			$vote->delete();
+		}
+		$this->_entry->score = $this->_entry->score - $votesSum;
 	}
 
 	private function updateScore(EntryVote $previousVote, $positive) {
