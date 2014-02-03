@@ -87,15 +87,15 @@ class Entry extends CActiveRecord {
 	 */
 	public function attributeLabels() {
 		return array(
-			'id' => 'ID',
-			'content' => 'Content',
-			'additional_content' => 'Additional Content',
-			'modified' => 'Modified',
-			'created' => 'Created',
-			'score' => 'Score',
-			'author' => 'Author',
-			'type' => 'Type',
-			'deleted' => 'Deleted',
+			'id' => Yii::t("Entry.id", 'ID'),
+			'content' => Yii::t("Entry.content", "Content"),
+			'additional_content' => Yii::t("Entry.additional_content", "Additional Content"),
+			'modified' => Yii::t("Entry.modified", "Modified"),
+			'created' => Yii::t("Entry.created", "Created"),
+			'score' => Yii::t("Entry.score", "Score"),
+			'author' => Yii::t("Entry.author", "Author"),
+			'type' => Yii::t("Entry.type", "Type"),
+			'deleted' => Yii::t("Entry.deleted", "Deleted"),
 		);
 	}
 

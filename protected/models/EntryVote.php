@@ -69,9 +69,9 @@ class EntryVote extends CActiveRecord {
 	 */
 	public function attributeLabels() {
 		return array(
-			'entry_id' => 'Entry',
-			'ip' => 'Ip',
-			'positive' => 'Positive',
+			'entry_id' => Yii::t("Entry.entry_id", "Entry"),
+			'ip' => Yii::t("Entry.ip", "Ip"),
+			'positive' => Yii::t("Entry.positive", "Positive"),
 		);
 	}
 
