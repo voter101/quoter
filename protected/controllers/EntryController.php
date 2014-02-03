@@ -174,7 +174,7 @@ class EntryController extends Controller {
 		} catch (ScoreHandlingException $e) {
 			$transaction->rollback();
 		}
-		echo json_encode($model->score);
+		echo json_encode((int)$model->score);
 	}
 
 	public function loadModel($id, $throwHTTPException = true) {

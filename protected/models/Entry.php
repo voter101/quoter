@@ -30,6 +30,14 @@ class Entry extends CActiveRecord {
 		return 'entry';
 	}
 
+	public function behaviors() {
+		return array(
+			'ESaveRelatedBehavior' => array(
+				'class' => 'application.components.ESaveRelatedBehavior'
+			)
+		);
+	}
+
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -69,7 +77,7 @@ class Entry extends CActiveRecord {
 			'entryVotes' => array(
 				self::HAS_MANY,
 				'EntryVote',
-				'id'
+				'entry_id'
 			),
 		);
 	}
@@ -92,6 +100,14 @@ class Entry extends CActiveRecord {
 	}
 
 	/**
+	 * Retrieves a list of models based on the current search/filter conditions.
+	 *
+	 * Typical usecase:
+	 * - Initialize the model fields with values from filter form.
+	 * - Execute this method to get CActiveDataProvider instance which will filter
+	 * models according to data in model fields.
+	 * - Pass data provider to CGridView, CListView or any similar widget.
+	 *
 	 * @return CActiveDataProvider the data provider that can return the models
 	 * based on the search/filter conditions.
 	 */
@@ -129,14 +145,14 @@ class Entry extends CActiveRecord {
 	}
 
 	public function updateVote($positive) {
-		$userIP = UserIP::getUserIP();
-		$previousVotes = EntryVote::model()->findAll('ip=:ip', array(
-			':ip' => $userIP
+		$previousVotes = EntryVote::model()->findAll('ip=:ip AND entry_id=:id', array(
+			':ip' => UserIP::getUserIP(),
+		    ':id' => $this->id,
 		));
 		if ($previousVotes == null) {
-			return $this->insertVote($positive, $userIP);
+			return $this->insertVote($positive);
 		} elseif (count($previousVotes) > 1) {
-			// TODO Resolve situations like this. Idea: delete all votes from this ip and accpet only a new vote
+			// TODO Resolve situations like this. Idea: delete all votes from this ip and accept only a new vote
 		} else {
 			return $this->updateScore($previousVotes[0], $positive);
 		}
@@ -145,29 +161,28 @@ class Entry extends CActiveRecord {
 	}
 
 	private function updateScore(EntryVote $previousVote, $positive) {
-		if ($positive != $previousVote->positive) {
-			$previousVote->positive = $positive;
-		} else {
+		if ($positive == $previousVote->positive) {
 			return true;
 		}
 
+		$previousVote->positive = $positive;
 		$previousVote->save();
-		$this->handleScore($positive);
+		$this->handleScore($positive, true);
+		$this->save();
 
 		return true;
 	}
 
-	private function insertVote($positive, $ip) {
+	private function insertVote($positive) {
 		$vote = new EntryVote();
-		$vote->id = $this->id;
-		$vote->ip = $ip;
+		$vote->entry_id = (int)$this->id;
+		$vote->ip = UserIP::getUserIP();
 		$vote->positive = (int)$positive;
-		$vote->save();
-
-		if (!$vote->save()) {
-			throw new ScoreHandlingException("I can't save entry after inserting vote to database.");
-		}
 		$this->handleScore($positive);
+		$this->entryVotes = array($vote);
+		$this->saveWithRelated(array(
+			'entryVotes' => array('append' => true)
+		));
 
 		return true;
 	}
@@ -183,10 +198,6 @@ class Entry extends CActiveRecord {
 			$this->score += $modifier;
 		} else {
 			$this->score -= $modifier;
-		}
-
-		if ($this->save() == false) {
-			throw new ScoreHandlingException("Couldn't save an entry after changing a score.");
 		}
 	}
 
