@@ -38,6 +38,14 @@ class Entry extends CActiveRecord {
 		);
 	}
 
+    public function beforeSave() {
+        if(parent::beforeSave()) {
+            $this->modified = date("Y-m-d H:i:s");
+            return true;
+        }
+        return false;
+    }
+
 	/**
 	 * @return array validation rules for model attributes.
 	 */
