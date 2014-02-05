@@ -14,7 +14,19 @@
 			?>
 		</span>
 		<span class="score">
+			<?php
+			echo CHtml::link("-", array(
+					'entry/vote',
+					'positive' => 0,
+				), array('class' => 'voteDown'));
+			?>
 			<?php echo CHtml::encode($data->score); ?>
+			<?php
+			echo CHtml::link("+", array(
+				'entry/vote',
+				'positive' => 1,
+			), array('class' => 'voteDown'));
+			?>
 		</span>
 		<span class="datetime">
 			<?php
