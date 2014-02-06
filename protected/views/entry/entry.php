@@ -1,6 +1,7 @@
 <?php
 /* @var $this EntryController */
 /* @var $data Entry */
+Yii::app()->getClientScript()->registerScriptFile(Yii::app()->baseUrl . '/js/entryVote.js');
 ?>
 <article class="entry">
 
@@ -16,18 +17,24 @@
 		<span class="score">
 			<?php
 			echo CHtml::link(Yii::t("Entry.voteDown", "-"), array(
-					'entry/vote',
-					'id' => $data->id,
-					'positive' => 0,
-				), array('class' => 'voteDown'));
+				'entry/vote',
+				'id' => $data->id,
+				'positive' => 0,
+			), array(
+				'class' => 'voteDown',
+				'data-id' => $data->id
+			));
 			?>
 			<?php echo CHtml::encode($data->score); ?>
 			<?php
 			echo CHtml::link(Yii::t("Entry.voteUp", "+"), array(
-				'entry/vote',
-				'id' => $data->id,
-				'positive' => 1,
-			), array('class' => 'voteUp'));
+					'entry/vote',
+					'id' => $data->id,
+					'positive' => 1,
+				), array(
+					'class' => 'voteUp',
+					'data-id' => $data->id
+				));
 			?>
 		</span>
 		<span class="datetime">
