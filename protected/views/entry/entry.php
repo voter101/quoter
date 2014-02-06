@@ -15,17 +15,19 @@
 		</span>
 		<span class="score">
 			<?php
-			echo CHtml::link("-", array(
+			echo CHtml::link(Yii::t("Entry.voteDown", "-"), array(
 					'entry/vote',
+					'id' => $data->id,
 					'positive' => 0,
 				), array('class' => 'voteDown'));
 			?>
 			<?php echo CHtml::encode($data->score); ?>
 			<?php
-			echo CHtml::link("+", array(
+			echo CHtml::link(Yii::t("Entry.voteUp", "+"), array(
 				'entry/vote',
+				'id' => $data->id,
 				'positive' => 1,
-			), array('class' => 'voteDown'));
+			), array('class' => 'voteUp'));
 			?>
 		</span>
 		<span class="datetime">
