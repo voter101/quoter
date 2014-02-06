@@ -1,8 +1,12 @@
+<?php
+$cs = Yii::app()->getClientScript();
+$baseUrl = Yii::app()->baseUrl;
+$cs->registerCssFile($baseUrl . '/css/style.css');
+?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8"/>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css"/>
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 <body>
