@@ -3,7 +3,7 @@
 /* @var $data Entry */
 Yii::app()->getClientScript()->registerScriptFile(Yii::app()->baseUrl . '/js/entryVote.js');
 ?>
-<article class="entry">
+<article data-id="<?php echo $data->id ?>" class="entry">
 
 	<section class="info">
 		<span class="id">
@@ -22,10 +22,10 @@ Yii::app()->getClientScript()->registerScriptFile(Yii::app()->baseUrl . '/js/ent
 				'positive' => 0,
 			), array(
 				'class' => 'voteDown',
-				'data-id' => $data->id
+			    'data-id' => $data->id,
 			));
 			?>
-			<?php echo CHtml::encode($data->score); ?>
+			<span class="number"><?php echo CHtml::encode($data->score); ?></span>
 			<?php
 			echo CHtml::link(Yii::t("Entry.voteUp", "+"), array(
 					'entry/vote',
@@ -33,7 +33,7 @@ Yii::app()->getClientScript()->registerScriptFile(Yii::app()->baseUrl . '/js/ent
 					'positive' => 1,
 				), array(
 					'class' => 'voteUp',
-					'data-id' => $data->id
+					'data-id' => $data->id,
 				));
 			?>
 		</span>
