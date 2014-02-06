@@ -42,7 +42,7 @@
 		<?php echo $content ?>
 	</section>
 	<footer>
-		<span class="copyright">Copyright &copy; <?php echo date('Y'); ?></span>
+		<span class="copyright"><?php echo Yii::app()->name; ?> &copy; <?php echo date('Y'); ?></span>
 	</footer>
 </div>
 </body>
