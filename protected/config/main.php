@@ -35,6 +35,7 @@ return array(
 			'showScriptName' => false,
 			'rules' => array(
 				'' => 'entry',
+				'<id:\d+>' => 'entry/view',
 				'<type:\w+>' => 'entry/viewByType',
 				'<controller:\w+>/<id:\d+>' => '<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
