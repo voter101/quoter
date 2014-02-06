@@ -61,15 +61,16 @@ class EntryController extends Controller {
 	public function actionViewByType($type = 'new') {
 		$criteriaArray = array();
 		switch ($type) {
-			case 'top':
+			case Yii::t("Entry.top", 'top'):
 				$criteriaArray['order'] = 'score DESC';
 				break;
-			case 'bottom':
+			case Yii::t("Entry.bottom", 'bottom'):
 				$criteriaArray['order'] = 'score ASC';
 				break;
-			case 'old':
+			case Yii::t("Entry.old", 'old'):
 				$criteriaArray['order'] = 'created ASC';
 				break;
+			case Yii::t("Entry.new", "new"):
 			default:
 				$criteriaArray['order'] = 'created DESC';
 		}
