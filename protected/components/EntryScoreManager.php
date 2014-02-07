@@ -2,6 +2,9 @@
 
 class EntryScoreManager extends CComponent {
 
+	const COOKIE_TTL = 43200; // Month: 60 * 24 * 30
+	const COOKIE_PREFIX = 'entryVote';
+
 	/**
 	 * @var Entry
 	 */
@@ -87,5 +90,9 @@ class EntryScoreManager extends CComponent {
 		} else {
 			$this->_entry->score -= $modifier;
 		}
+	}
+
+	public static function SetUpCookie($id, $positive) {
+		return setcookie(self::COOKIE_PREFIX . $id, $positive, self::COOKIE_TTL);
 	}
 }
