@@ -168,16 +168,20 @@ class EntryController extends Controller {
 		}
 		$transaction = DbUtils::beginTransaction();
 		try {
-			$model->Vote($positive);
+			$returnMessage = $model->Vote($positive);
 			$transaction->commit();
 		} catch (CDbException $e) {
 			$transaction->rollback();
 		} catch (ScoreHandlingException $e) {
 			$transaction->rollback();
 		}
-		echo json_encode((int)$model->score);
+		echo $returnMessage;
 	}
 
+	/**
+	 * @return Entry
+	 * @throws CHttpException
+	 */
 	public function loadModel($id, $throwHTTPException = true) {
 		$model = Entry::model()->findByPk($id);
 		if ($model === null && $throwHTTPException) {
