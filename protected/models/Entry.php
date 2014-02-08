@@ -152,7 +152,7 @@ class Entry extends CActiveRecord {
 		return null;
 	}
 
-	public function updateVote($positive) {
+	public function Vote($positive) {
 		return Yii::app()->entryScoreManager->Vote($this, $positive);
 	}
 

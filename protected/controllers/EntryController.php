@@ -158,7 +158,7 @@ class EntryController extends Controller {
 	}
 
 	public function actionVote($id) {
-		if(!isset($_GET['positive'])) {
+		if (!isset($_GET['positive'])) {
 			die();
 		}
 		$positive = (int)$_GET['positive'];
@@ -168,7 +168,7 @@ class EntryController extends Controller {
 		}
 		$transaction = DbUtils::beginTransaction();
 		try {
-			$model->updateVote($positive);
+			$model->Vote($positive);
 			$transaction->commit();
 		} catch (CDbException $e) {
 			$transaction->rollback();
@@ -183,6 +183,7 @@ class EntryController extends Controller {
 		if ($model === null && $throwHTTPException) {
 			throw new CHttpException(404, 'The requested page does not exist.');
 		}
+
 		return $model;
 	}
 
