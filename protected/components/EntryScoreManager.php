@@ -27,11 +27,11 @@ class EntryScoreManager extends CComponent {
 		if ($entry == null) {
 			throw new CException("You didn't passed Entry object to Score Manager");
 		}
+		$this->_entry = $entry;
 		$previousVotes = $this->getPreviousVotes();
 		/**
 		 * @TODO Is passing $entry as class property a good idea? Some public function may not set $this->_entry.
 		 */
-		$this->_entry = $entry;
 		$this->_voteMessage = new EntryVoteMessage;
 		$this->_voteMessage->setScore($this->_entry->score);
 		$this->_voteMessage->setPositive($positive);
