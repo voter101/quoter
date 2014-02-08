@@ -68,6 +68,7 @@ class EntryScoreManager extends CComponent {
 			)) == true
 		) {
 			$this->_voteMessage->setMessage(Yii::t("EntryVote.voteInsert.success", "Your vote has been saved"));
+
 			return true;
 		}
 		$this->_voteMessage->setMessage(Yii::t("EntryVote.voteInsert.failure", "Your vote couldn't be saved"));
@@ -90,15 +91,24 @@ class EntryScoreManager extends CComponent {
 
 	private function updateScore(EntryVote $previousVote, $positive) {
 		if ($positive == $previousVote->positive) {
+			$this->_voteMessage->setMessage(Yii::t("EntryVote.voteUpdate.noActionNeeded", "Sorry, but you have already voted"));
+
 			return true;
 		}
 
 		$previousVote->positive = $positive;
-		$previousVote->save();
+		if ($previousVote->save() == false) {
+			return false;
+		}
 		$this->handleEntryScore($positive, true);
-		$this->_entry->save();
+		if ($this->_entry->save() == true) {
+			$this->_voteMessage->setMessage(Yii::t("EntryVote.voteUpdate.success", "Your vote has been updated"));
 
-		return true;
+			return true;
+		}
+
+		$this->_voteMessage->setMessage(Yii::t("EntryVote.voteUpdate.failure", "Your vote couldn't be updated"));
+		return false;
 	}
 
 	private function handleEntryScore($positive, $update = false) {
