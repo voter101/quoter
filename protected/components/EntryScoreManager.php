@@ -15,6 +15,10 @@ class EntryScoreManager extends CComponent {
 	 */
 	private $_voteMessage;
 
+	/**
+	 * @return EntryVoteMessage
+	 * @throws CException
+	 */
 	public function Vote(Entry $entry, $positive) {
 		if ($entry == null) {
 			throw new CException("You didn't passed Entry object to Score Manager");
