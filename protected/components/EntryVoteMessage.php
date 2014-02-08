@@ -5,6 +5,7 @@ class EntryVoteMessage {
 	private $_score;
 	private $_message;
 	private $_positive;
+	private $_operationStatus;
 
 	public function setScore($score) {
 		if (!is_numeric($score)) {
@@ -25,11 +26,20 @@ class EntryVoteMessage {
 		$this->_positive = $positive;
 	}
 
+	public function setOperationStatus($status) {
+		$status = (int)$status;
+		if ($status != 1 || $status != 0) {
+			throw new InvalidArgumentException("Operation status field must be true or false");
+		}
+		$this->_operationStatus = $status;
+	}
+
 	public function __toString() {
 		$arr = array(
 			'score' => $this->_score,
 		    'message' => $this->_message,
 		    'positive' => $this->_positive,
+		    'operationStatus' => $this->_operationStatus,
 		);
 		return json_encode($arr);
 	}
