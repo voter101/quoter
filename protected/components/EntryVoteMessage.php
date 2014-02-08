@@ -20,7 +20,7 @@ class EntryVoteMessage {
 
 	public function setPositive($positive) {
 		$positive = (int)$positive;
-		if ($positive != 1 || $positive != 0) {
+		if ($positive != 1 && $positive != 0) {
 			throw new InvalidArgumentException("Positive field must be true or false");
 		}
 		$this->_positive = $positive;
@@ -28,7 +28,7 @@ class EntryVoteMessage {
 
 	public function setOperationStatus($status) {
 		$status = (int)$status;
-		if ($status != 1 || $status != 0) {
+		if ($status != 1 && $status != 0) {
 			throw new InvalidArgumentException("Operation status field must be true or false");
 		}
 		$this->_operationStatus = $status;
