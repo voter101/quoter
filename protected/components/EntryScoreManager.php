@@ -15,6 +15,10 @@ class EntryScoreManager extends CComponent {
 	 */
 	private $_voteMessage;
 
+	public function init() {
+
+	}
+
 	/**
 	 * @return EntryVoteMessage
 	 * @throws CException
