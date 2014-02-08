@@ -25,16 +25,19 @@ class EntryScoreManager extends CComponent {
 		 */
 		$this->_entry = $entry;
 		$this->_voteMessage = new EntryVoteMessage;
+		$this->_voteMessage->setScore($this->_entry->score);
+		$this->_voteMessage->setPositive($positive);
 		if ($this->voteActionOnPreviousVotes($previousVotes, $positive) == true) {
 			if (self::SetUpCookie($this->_entry->id, $positive) == true) {
-				$this->_voteMessage->setScore($this->_entry->score);
-				$this->_voteMessage->setPositive($positive);
-
-				return $this->_voteMessage;
+				$this->_voteMessage->setOperationStatus(true);
 			}
 		}
 
-		return false;
+		if ($this->_voteMessage->getOperationStatus() == null) {
+			$this->_voteMessage->setOperationStatus(false);
+		}
+
+		return $this->_voteMessage;
 	}
 
 	private function voteActionOnPreviousVotes(array $previousVotes, $positive) {
@@ -109,6 +112,7 @@ class EntryScoreManager extends CComponent {
 		}
 
 		$this->_voteMessage->setMessage(Yii::t("EntryVote.voteUpdate.failure", "Your vote couldn't be updated"));
+
 		return false;
 	}
 

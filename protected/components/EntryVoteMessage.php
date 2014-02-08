@@ -34,13 +34,22 @@ class EntryVoteMessage {
 		$this->_operationStatus = $status;
 	}
 
+	public function getOperationStatus() {
+		if (isset($this->_operationStatus)) {
+			return $this->_operationStatus;
+		}
+
+		return null;
+	}
+
 	public function __toString() {
 		$arr = array(
 			'score' => $this->_score,
-		    'message' => $this->_message,
-		    'positive' => $this->_positive,
-		    'operationStatus' => $this->_operationStatus,
+			'message' => $this->_message,
+			'positive' => $this->_positive,
+			'operationStatus' => $this->_operationStatus,
 		);
+
 		return json_encode($arr);
 	}
 
