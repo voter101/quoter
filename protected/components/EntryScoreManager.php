@@ -9,6 +9,10 @@ class EntryScoreManager extends CComponent {
 	 * @var Entry
 	 */
 	private $_entry;
+	/**
+	 * @var EntryVoteMessage
+	 */
+	private $_voteMessage;
 
 	public function Vote(Entry $entry, $positive) {
 		if ($entry == null) {
@@ -19,8 +23,14 @@ class EntryScoreManager extends CComponent {
 		 * @TODO Is passing $entry as class property a good idea? Some public function may not set $this->_entry.
 		 */
 		$this->_entry = $entry;
+		$this->_voteMessage = new EntryVoteMessage;
 		if ($this->voteActionOnPreviousVotes($previousVotes, $positive) == true) {
-			return self::SetUpCookie($this->_entry->id, $positive);
+			if (self::SetUpCookie($this->_entry->id, $positive) == true) {
+				$this->_voteMessage->setScore($this->_entry->score);
+				$this->_voteMessage->setPositive($positive);
+
+				return $this->_voteMessage;
+			}
 		}
 
 		return false;
@@ -53,11 +63,16 @@ class EntryScoreManager extends CComponent {
 		$vote->positive = (int)$positive;
 		$this->handleEntryScore($positive);
 		$this->_entry->entryVotes = array($vote);
-		$this->_entry->saveWithRelated(array(
-			'entryVotes' => array('append' => true)
-		));
+		if ($this->_entry->saveWithRelated(array(
+				'entryVotes' => array('append' => true)
+			)) == true
+		) {
+			$this->_voteMessage->setMessage(Yii::t("EntryVote.voteInsert.success", "Your vote has been saved"));
+			return true;
+		}
+		$this->_voteMessage->setMessage(Yii::t("EntryVote.voteInsert.failure", "Your vote couldn't be saved"));
 
-		return true;
+		return false;
 	}
 
 	private function resolveMultipleVotesScore(array $previousVotes) {
