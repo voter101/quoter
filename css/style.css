@@ -80,7 +80,7 @@ html, body {
 
 header {
   position: relative;
-  margin: 30px 0; }
+  margin: 30px 0 50px; }
   header h1 {
     display: inline-block;
     font-size: 32px;
@@ -100,7 +100,7 @@ header {
 
 .entry {
   margin: 0 auto;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   width: 80%;
   display: block;
   position: relative; }
@@ -125,7 +125,7 @@ header {
 #content {
   display: block;
   clear: both;
-  margin-bottom: 20px; }
+  margin-bottom: 35px; }
 
 footer {
   clear: both;
