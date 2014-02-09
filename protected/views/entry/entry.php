@@ -36,6 +36,7 @@ Yii::app()->getClientScript()->registerScriptFile(Yii::app()->baseUrl . '/js/ent
 					'data-id' => $data->id,
 				));
 			?>
+			<span class="voteMessage"></span>
 		</span>
 		<span class="datetime">
 			<?php
