@@ -16,18 +16,22 @@ Yii::app()->getClientScript()->registerScriptFile(Yii::app()->baseUrl . '/js/ent
 		</span>
 		<span class="score">
 			<?php
-			echo CHtml::link(Yii::t("Entry.voteDown", "-"), array(
-				'entry/vote',
-				'id' => $data->id,
-				'positive' => 0,
-			), array(
-				'class' => 'voteDown',
-			    'data-id' => $data->id,
-			));
+			$cookieSign = EntryScoreManager::GetVoteCookieSign($data->id);
+			if ($cookieSign !== 0) {
+				echo CHtml::link(Yii::t("Entry.voteDown", "-"), array(
+					'entry/vote',
+					'id' => $data->id,
+					'positive' => 0,
+				), array(
+					'class' => 'voteDown',
+					'data-id' => $data->id,
+				));
+			}
 			?>
 			<span class="number"><?php echo CHtml::encode($data->score); ?></span>
 			<?php
-			echo CHtml::link(Yii::t("Entry.voteUp", "+"), array(
+			if ($cookieSign !== 1) {
+				echo CHtml::link(Yii::t("Entry.voteUp", "+"), array(
 					'entry/vote',
 					'id' => $data->id,
 					'positive' => 1,
@@ -35,6 +39,7 @@ Yii::app()->getClientScript()->registerScriptFile(Yii::app()->baseUrl . '/js/ent
 					'class' => 'voteUp',
 					'data-id' => $data->id,
 				));
+			}
 			?>
 			<span class="voteMessage"></span>
 		</span>
