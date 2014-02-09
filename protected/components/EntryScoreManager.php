@@ -1,6 +1,5 @@
 <?php
 
-// FIXME refactoring
 class EntryScoreManager extends CComponent {
 
 	const COOKIE_TTL = 43200; // Month: 60 * 24 * 30
