@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS `entry` (
   `score` int(11) NOT NULL DEFAULT '0',
   `author` varchar(64) COLLATE utf8_bin DEFAULT NULL,
   `type` smallint(6) NOT NULL DEFAULT '0',
-  `status` enum('pending','queued','accepted') COLLATE utf8_bin NOT NULL DEFAULT 'pending',
+  `status` enum('pending','queued','published') COLLATE utf8_bin NOT NULL DEFAULT 'pending',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
 
