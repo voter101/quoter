@@ -45,13 +45,12 @@ class EntryScoreManager extends CComponent {
 	private function voteActionOnPreviousVotes(array $previousVotes, $positive) {
 		if ($previousVotes == null) {
 			return $this->insertVote($positive);
-		} elseif (count($previousVotes) > 1) {
-			$this->resolveMultipleVotesScore($previousVotes);
-
-			return $this->Vote($this->_entry, $positive);
-		} else {
+		} elseif (count($previousVotes) == 1) {
 			return $this->updateScore($previousVotes[0], $positive);
 		}
+		$this->resolveMultipleVotesScore($previousVotes);
+
+		return $this->Vote($this->_entry, $positive);
 
 	}
 
