@@ -29,21 +29,14 @@ class EntryScoreManager extends CComponent {
 		}
 		$this->_entry = $entry;
 		$previousVotes = $this->getPreviousVotes();
-		/**
-		 * @TODO Is passing $entry as class property a good idea? Some public function may not set $this->_entry.
-		 */
 		$this->_voteMessage = new EntryVoteMessage;
 		$this->_voteMessage->setPositive($positive);
+		$this->_voteMessage->setOperationStatus(false);
 		if ($this->voteActionOnPreviousVotes($previousVotes, $positive) == true) {
 			if (self::SetUpCookie($this->_entry->id, $positive) == true) {
 				$this->_voteMessage->setOperationStatus(true);
 			}
 		}
-
-		if ($this->_voteMessage->getOperationStatus() == null) {
-			$this->_voteMessage->setOperationStatus(false);
-		}
-
 		$this->_voteMessage->setScore($this->_entry->score);
 
 		return $this->_voteMessage;
