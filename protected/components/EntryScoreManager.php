@@ -68,10 +68,7 @@ class EntryScoreManager extends CComponent {
 		$vote->positive = (int)$positive;
 		$this->handleEntryScore($positive);
 		$this->_entry->entryVotes = array($vote);
-		if ($this->_entry->saveWithRelated(array(
-				'entryVotes' => array('append' => true)
-			)) == true
-		) {
+		if ($this->_entry->saveWithRelated(array('entryVotes' => array('append' => true))) == true) {
 			$this->_voteMessage->setMessage(Yii::t("EntryVote.voteInsert.success", "Your vote has been saved"));
 
 			return true;
