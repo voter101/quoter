@@ -16,6 +16,8 @@
  *
  * The followings are the available model relations:
  * @property EntryVote[] $entryVotes
+ *
+ * @todo Show only entries with status PUBLISHED
  */
 class Entry extends CActiveRecord {
 
