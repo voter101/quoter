@@ -25,7 +25,7 @@ class EntryScoreManager extends CComponent {
 	 */
 	public function Vote(Entry $entry, $positive) {
 		if ($entry == null) {
-			throw new CException("You didn't passed Entry object to Score Manager");
+			throw new InvalidArgumentException("You didn't passed Entry object to Score Manager");
 		}
 		$this->_entry = $entry;
 		$previousVotes = $this->getPreviousVotes();
