@@ -17,29 +17,33 @@ Yii::app()->getClientScript()->registerScriptFile(Yii::app()->baseUrl . '/js/ent
 		<span class="score">
 			<?php
 			$cookieSign = EntryScoreManager::GetVoteCookieSign($data->id);
-			if ($cookieSign !== 0) {
-				echo CHtml::link(Yii::t("Entry.voteDown", "-"), array(
-					'entry/vote',
-					'id' => $data->id,
-					'positive' => 0,
-				), array(
-					'class' => 'voteDown',
-					'data-id' => $data->id,
-				));
+			$voteDownHtmlOptions = array(
+				'class' => 'voteDown',
+				'data-id' => $data->id,
+			);
+			if ($cookieSign === 0) {
+				$voteDownHtmlOptions['style'] = "display:none;";
 			}
+			echo CHtml::link(Yii::t("Entry.voteDown", "-"), array(
+				'entry/vote',
+				'id' => $data->id,
+				'positive' => 0,
+			), $voteDownHtmlOptions);
 			?>
 			<span class="number"><?php echo CHtml::encode($data->score); ?></span>
 			<?php
-			if ($cookieSign !== 1) {
-				echo CHtml::link(Yii::t("Entry.voteUp", "+"), array(
-					'entry/vote',
-					'id' => $data->id,
-					'positive' => 1,
-				), array(
-					'class' => 'voteUp',
-					'data-id' => $data->id,
-				));
+			$voteUpHtmlOptions = array(
+				'class' => 'voteUp',
+				'data-id' => $data->id,
+			);
+			if ($cookieSign === 1) {
+				$voteUpHtmlOptions['style'] = "display:none;";
 			}
+			echo CHtml::link(Yii::t("Entry.voteUp", "+"), array(
+				'entry/vote',
+				'id' => $data->id,
+				'positive' => 1,
+			), $voteUpHtmlOptions);
 			?>
 			<span class="voteMessage"></span>
 		</span>
