@@ -16,7 +16,6 @@ CREATE TABLE IF NOT EXISTS `entry` (
   `score` int(11) NOT NULL DEFAULT '0',
   `author` varchar(64) COLLATE utf8_bin DEFAULT NULL,
   `type` smallint(6) NOT NULL DEFAULT '0',
-  `deleted` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
 

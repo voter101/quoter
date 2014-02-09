@@ -13,7 +13,6 @@
  * @property integer     $score
  * @property string      $author
  * @property integer     $type
- * @property integer     $deleted
  *
  * The followings are the available model relations:
  * @property EntryVote[] $entryVotes
@@ -56,7 +55,7 @@ class Entry extends CActiveRecord {
 				'required'
 			),
 			array(
-				'score, type, deleted',
+				'score, type',
 				'numerical',
 				'integerOnly' => true
 			),
@@ -103,7 +102,6 @@ class Entry extends CActiveRecord {
 			'score' => Yii::t("Entry.score", "Score"),
 			'author' => Yii::t("Entry.author", "Author"),
 			'type' => Yii::t("Entry.type", "Type"),
-			'deleted' => Yii::t("Entry.deleted", "Deleted"),
 		);
 	}
 
