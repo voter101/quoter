@@ -140,12 +140,12 @@ class EntryScoreManager extends CComponent {
 	}
 
 	public static function SetUpCookie($id, $positive) {
-		return setcookie(self::COOKIE_PREFIX . $id, $positive, self::COOKIE_TTL);
+		return setcookie(self::COOKIE_PREFIX . $id, $positive, time() + self::COOKIE_TTL, '/');
 	}
 
 	public static function GetVoteCookieSign($id) {
 		if (isset($_COOKIE[self::COOKIE_PREFIX . $id])) {
-			return (int)$_COOKIE(self::COOKIE_PREFIX . $id);
+			return (int)$_COOKIE[self::COOKIE_PREFIX . $id];
 		}
 
 		return null;
