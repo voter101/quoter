@@ -10,6 +10,9 @@ $(document).ready(function () {
 function VoteAjax(id, url) {
     $.ajax({url: url})
         .done(function(html) {
-            $('article[data-id='+ id + '] .score .number').html(html);
+            var json = $.parseJSON(html);
+            console.log(json);
+            console.log(json.score);
+            $('article[data-id='+ id + '] .score .number').html(json.score + "");
     });
 }
