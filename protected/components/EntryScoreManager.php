@@ -43,7 +43,7 @@ class EntryScoreManager extends CComponent {
 		if ($this->_voteMessage->getOperationStatus() == null) {
 			$this->_voteMessage->setOperationStatus(false);
 		}
-	
+
 		$this->_voteMessage->setScore($this->_entry->score);
 
 		return $this->_voteMessage;
