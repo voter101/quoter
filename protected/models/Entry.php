@@ -21,6 +21,10 @@ class Entry extends CActiveRecord {
 
 	// Types enums
 	const TEXT = 0;
+	// Status enums
+	const PENDING = 'pending';
+	const QUEUED = 'queued';
+	const PUBLISHED = 'published';
 
 	/**
 	 * @return string the associated database table name
@@ -37,13 +41,15 @@ class Entry extends CActiveRecord {
 		);
 	}
 
-    public function beforeSave() {
-        if(parent::beforeSave()) {
-            $this->modified = date("Y-m-d H:i:s");
-            return true;
-        }
-        return false;
-    }
+	public function beforeSave() {
+		if (parent::beforeSave()) {
+			$this->modified = date("Y-m-d H:i:s");
+
+			return true;
+		}
+
+		return false;
+	}
 
 	/**
 	 * @return array validation rules for model attributes.
@@ -63,6 +69,11 @@ class Entry extends CActiveRecord {
 				'author',
 				'length',
 				'max' => 64
+			),
+			array(
+				'status',
+				'length',
+				'max' => 8
 			),
 			array(
 				'additional_content',
@@ -102,6 +113,7 @@ class Entry extends CActiveRecord {
 			'score' => Yii::t("Entry.score", "Score"),
 			'author' => Yii::t("Entry.author", "Author"),
 			'type' => Yii::t("Entry.type", "Type"),
+			'status' => Yii::t("Entry.status", "Status"),
 		);
 	}
 
@@ -113,6 +125,7 @@ class Entry extends CActiveRecord {
 	 * - Execute this method to get CActiveDataProvider instance which will filter
 	 * models according to data in model fields.
 	 * - Pass data provider to CGridView, CListView or any similar widget.
+	 * @todo Search only published entries
 	 *
 	 * @return CActiveDataProvider the data provider that can return the models
 	 * based on the search/filter conditions.
