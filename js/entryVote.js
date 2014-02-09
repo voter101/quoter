@@ -9,10 +9,21 @@ $(document).ready(function () {
 
 function VoteAjax(id, url) {
     $.ajax({url: url})
-        .done(function(html) {
+        .done(function (html) {
             var json = $.parseJSON(html);
-            console.log(json);
-            console.log(json.score);
-            $('article[data-id='+ id + '] .score .number').html(json.score + "");
-    });
+            UpdateEntryAfterVote(id, json);
+        });
+}
+
+function UpdateEntryAfterVote(id, json) {
+    var articleSelector = 'article[data-id=' + id + ']';
+    $(articleSelector + ' .score .number').html(json.score);
+    $(articleSelector + ' .score .voteMessage').html(json.message);
+    if (json.positive == 1) {
+        $(articleSelector + ' .score .voteUp').hide();
+        $(articleSelector + ' .score .voteDown').show();
+    } else {
+        $(articleSelector + ' .score .voteDown').hide();
+        $(articleSelector + ' .score .voteUp').show();
+    }
 }
