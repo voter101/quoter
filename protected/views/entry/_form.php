@@ -64,10 +64,14 @@
 		<?php echo $form->error($model, 'type'); ?>
 	</div>
 
+	<?php
+	// @TODO status should be a dropdown
+	// @TODO status is only for admins
+	?>
 	<div class="row">
-		<?php echo $form->labelEx($model, 'deleted'); ?>
-		<?php echo $form->textField($model, 'deleted'); ?>
-		<?php echo $form->error($model, 'deleted'); ?>
+		<?php echo $form->labelEx($model, 'status'); ?>
+		<?php echo $form->textField($model, 'status'); ?>
+		<?php echo $form->error($model, 'status'); ?>
 	</div>
 
 	<div class="row buttons">
