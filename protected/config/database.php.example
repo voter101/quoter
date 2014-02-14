@@ -1,9 +1,9 @@
 <?php
 $db = array(
-	'connectionString' => 'mysql:host=localhost;dbname=blog',
+	'connectionString' => 'mysql:host=localhost;dbname=quoter',
 	'emulatePrepare' => true,
 	'username' => 'root',
 	'password' => '',
 	'charset' => 'utf8',
-	'tablePrefix' => 'tbl_',
+	'tablePrefix' => '',
 );
