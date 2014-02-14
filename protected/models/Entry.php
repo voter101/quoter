@@ -13,6 +13,7 @@
  * @property integer     $score
  * @property string      $author
  * @property integer     $type
+ * @property string      $status
  *
  * The followings are the available model relations:
  * @property EntryVote[] $entryVotes
@@ -127,6 +128,7 @@ class Entry extends CActiveRecord {
 	 * - Execute this method to get CActiveDataProvider instance which will filter
 	 * models according to data in model fields.
 	 * - Pass data provider to CGridView, CListView or any similar widget.
+	 *
 	 * @todo Search only published entries
 	 *
 	 * @return CActiveDataProvider the data provider that can return the models
