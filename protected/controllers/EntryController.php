@@ -19,26 +19,20 @@ class EntryController extends Controller {
 				'allow',
 				// allow all users to perform 'index' and 'view' actions
 				'actions' => array(
+					'add',
 					'index',
 					'view',
 					'viewByType',
-					'vote'
+					'vote',
 				),
 				'users' => array('*'),
 			),
 			array(
 				'allow',
-				// allow authenticated user to perform 'create' and 'update' actions
-				'actions' => array(
-					'create',
-					'update'
-				),
-				'users' => array('@'),
-			),
-			array(
-				'allow',
 				// allow admin user to perform 'admin' and 'delete' actions
 				'actions' => array(
+					'create',
+			        'update',
 					'admin',
 					'delete'
 				),
@@ -88,7 +82,7 @@ class EntryController extends Controller {
 		));
 	}
 
-	public function actionCreate() {
+	public function actionAdd() {
 		$model = new Entry;
 
 		$this->performAjaxValidation($model);
@@ -108,9 +102,24 @@ class EntryController extends Controller {
 		));
 	}
 
-	public function actionAdd() {
-		$this->redirect(array(
-			'create',
+	public function actionCreate() {
+		$model = new Entry;
+
+		$this->performAjaxValidation($model);
+
+		if (isset($_POST['Entry'])) {
+			$model->attributes = $_POST['Entry'];
+			if ($model->save()) {
+				// @TODO Redirect to Create page, with success message
+				$this->redirect(array(
+					'view',
+					'id' => $model->id
+				));
+			}
+		}
+
+		$this->render('create', array(
+			'model' => $model,
 		));
 	}
 
