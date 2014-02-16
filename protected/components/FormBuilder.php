@@ -7,7 +7,7 @@ class FormBuilder {
 
 	/**
 	 * @param       $model
-	 * @param array $inputs array of inputs. Input format specified on self::getField()
+	 * @param array $inputs array of FormBuilderInputs
 	 * @param bool  $ajaxValidation
 	 * @param null  $submitText Default: text from internationalization library
 	 */
@@ -15,8 +15,8 @@ class FormBuilder {
 
 	}
 
-	public static function GetInput($model, $attribute, array $labelOptions, array $fieldOptions = null, array $errorOptions = null) {
-
+	public static function GetInput($model, $attribute, $fieldType, array $labelOptions = null, array $fieldOptions = null, array $errorOptions = null) {
+		return new FormBuilderInput($model, $attribute, $fieldType, $labelOptions, $fieldOptions, $errorOptions);
 	}
 
 } 
