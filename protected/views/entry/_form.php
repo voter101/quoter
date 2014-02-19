@@ -27,15 +27,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model, 'additional_content'); ?>
-		<?php echo $form->textArea($model, 'additional_content', array(
-			'rows' => 6,
-			'cols' => 50
-		)); ?>
-		<?php echo $form->error($model, 'additional_content'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model, 'created'); ?>
 		<?php echo $form->textField($model, 'created'); ?>
 		<?php echo $form->error($model, 'created'); ?>

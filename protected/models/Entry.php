@@ -7,7 +7,6 @@
  *
  * @property integer     $id
  * @property string      $content
- * @property string      $additional_content
  * @property string      $modified
  * @property string      $created
  * @property integer     $score
@@ -79,11 +78,7 @@ class Entry extends CActiveRecord {
 				'max' => 8
 			),
 			array(
-				'additional_content',
-				'safe'
-			),
-			array(
-				'id, content, additional_content, score, author, type',
+				'id, content, score, author, type',
 				'safe',
 				'on' => 'search'
 			),
@@ -110,7 +105,6 @@ class Entry extends CActiveRecord {
 		return array(
 			'id' => Yii::t("Entry.id", 'ID'),
 			'content' => Yii::t("Entry.content", "Content"),
-			'additional_content' => Yii::t("Entry.additional_content", "Additional Content"),
 			'modified' => Yii::t("Entry.modified", "Modified"),
 			'created' => Yii::t("Entry.created", "Created"),
 			'score' => Yii::t("Entry.score", "Score"),
@@ -140,7 +134,6 @@ class Entry extends CActiveRecord {
 
 		$criteria->compare('id', $this->id);
 		$criteria->compare('content', $this->content, true);
-		$criteria->compare('additional_content', $this->additional_content, true);
 		$criteria->compare('score', $this->score);
 		$criteria->compare('author', $this->author, true);
 		$criteria->compare('type', $this->type);

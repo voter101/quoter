@@ -4,7 +4,6 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `entry` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `content` text COLLATE utf8_bin NOT NULL,
-  `additional_content` text COLLATE utf8_bin,
   `modified` timestamp NULL DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `score` int(11) NOT NULL DEFAULT '0',

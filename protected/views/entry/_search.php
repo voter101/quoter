@@ -25,14 +25,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model, 'additional_content'); ?>
-		<?php echo $form->textArea($model, 'additional_content', array(
-			'rows' => 6,
-			'cols' => 50
-		)); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model, 'created'); ?>
 		<?php echo $form->textField($model, 'created'); ?>
 	</div>
@@ -48,16 +40,6 @@
 			'size' => 60,
 			'maxlength' => 64
 		)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model, 'type'); ?>
-		<?php echo $form->textField($model, 'type'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model, 'deleted'); ?>
-		<?php echo $form->textField($model, 'deleted'); ?>
 	</div>
 
 	<div class="row buttons">
