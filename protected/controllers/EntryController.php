@@ -58,25 +58,24 @@ class EntryController extends Controller {
 	}
 
 	public function actionViewByType($type = 'new') {
-		$criteriaArray = array(
-			'condition' => 'status=:status',
-		    'params' => array(':status'=>Entry::PUBLISHED),
-		);
+		$criteria = new CDbCriteria();
+		$criteria->condition = 'status=:status';
+		$criteria->params = array(':status'=>Entry::PUBLISHED);
 		switch ($type) {
 			case Yii::t("Entry.top", 'top'):
-				$criteriaArray['order'] = 'score DESC';
+				$order = 'score DESC';
 				break;
 			case Yii::t("Entry.bottom", 'bottom'):
-				$criteriaArray['order'] = 'score ASC';
+				$order = 'score ASC';
 				break;
 			case Yii::t("Entry.old", 'old'):
-				$criteriaArray['order'] = 'created ASC';
+				$order = 'created ASC';
 				break;
 			case Yii::t("Entry.new", "new"):
 			default:
-				$criteriaArray['order'] = 'created DESC';
+				$order = 'created DESC';
 		}
-		$criteria = new CDbCriteria($criteriaArray);
+		$criteria->order = $order;
 
 		$dataProvider = new CActiveDataProvider('Entry', array(
 			'pagination' => array(
