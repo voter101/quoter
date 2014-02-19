@@ -58,7 +58,10 @@ class EntryController extends Controller {
 	}
 
 	public function actionViewByType($type = 'new') {
-		$criteriaArray = array();
+		$criteriaArray = array(
+			'condition' => 'status=:status',
+		    'params' => array(':status'=>Entry::PUBLISHED),
+		);
 		switch ($type) {
 			case Yii::t("Entry.top", 'top'):
 				$criteriaArray['order'] = 'score DESC';
@@ -80,6 +83,7 @@ class EntryController extends Controller {
 				'pageSize' => 10,
 			),
 			'criteria' => $criteria,
+
 		));
 
 		$this->render('index', array(
@@ -199,7 +203,7 @@ class EntryController extends Controller {
 	 * @throws CHttpException
 	 */
 	public function loadModel($id, $throwHTTPException = true) {
-		$model = Entry::model()->findByPk($id);
+		$model = Entry::model()->findByPk($id, 'status=:status', array(':status' => Entry::PUBLISHED));
 		if ($model === null && $throwHTTPException) {
 			throw new CHttpException(404, 'The requested page does not exist.');
 		}
