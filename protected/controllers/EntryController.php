@@ -3,7 +3,7 @@
 /**
  * Difference between add and create action:
  *  * Add - used by users. Doesn't require admin access. Can be used to add entry to moderation
- *  * Create - used by admins.
+ *  * Create - used by admins. It doesn't hide any field used in database and let set every possible state of entry
  */
 class EntryController extends Controller {
 
