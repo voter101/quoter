@@ -55,7 +55,7 @@ class Entry extends CActiveRecord {
 	public function rules() {
 		return array(
 			array(
-				'content, created',
+				'content',
 				'required'
 			),
 			array(
