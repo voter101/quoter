@@ -102,7 +102,7 @@ class EntryController extends Controller {
 			}
 		}
 
-		$this->render('create', array(
+		$this->render('add', array(
 			'model' => $model,
 		));
 	}
