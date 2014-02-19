@@ -1,10 +1,6 @@
 <?php
 
 /**
- * This is the model class for table "entry_vote".
- *
- * The followings are the available columns in table 'entry_vote':
- *
  * @property integer $entry_id
  * @property string  $ip
  * @property integer $positive

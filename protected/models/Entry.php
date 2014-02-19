@@ -1,10 +1,6 @@
 <?php
 
 /**
- * This is the model class for table "entry".
- *
- * The followings are the available columns in table 'entry':
- *
  * @property integer     $id
  * @property string      $content
  * @property string      $modified

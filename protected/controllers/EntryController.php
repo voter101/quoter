@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Difference between add and create action:
+ *  * Add - used by users. Doesn't require admin access. Can be used to add entry to moderation
+ *  * Create - used by admins.
+ */
 class EntryController extends Controller {
 
 	public $layout = '//layouts/column2';
@@ -176,6 +181,7 @@ class EntryController extends Controller {
 			die();
 		}
 		$transaction = DbUtils::beginTransaction();
+		$returnMessage = null;
 		try {
 			$returnMessage = $model->Vote($positive);
 			$transaction->commit();
@@ -183,8 +189,9 @@ class EntryController extends Controller {
 			$transaction->rollback();
 		} catch (ScoreHandlingException $e) {
 			$transaction->rollback();
+		} finally {
+			echo $returnMessage;
 		}
-		echo $returnMessage;
 	}
 
 	/**

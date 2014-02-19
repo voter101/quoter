@@ -1,6 +1,10 @@
 <?php
-/* @var $this EntryController */
+/*
+ * The difference between add and create is explained in controller
+ */
+
 /* @var $model Entry */
+/* @var $this EntryController */
 
 $this->breadcrumbs = array(
 	'Entries' => array('index'),
