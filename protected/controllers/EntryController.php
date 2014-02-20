@@ -99,8 +99,8 @@ class EntryController extends Controller {
 			$model->attributes = $_POST['Entry'];
 			if ($model->save()) {
 				$this->redirect(array(
-					'view',
-					'id' => $model->id
+					'add',
+					'success' => 1,
 				));
 			}
 		}
@@ -118,10 +118,9 @@ class EntryController extends Controller {
 		if (isset($_POST['Entry'])) {
 			$model->attributes = $_POST['Entry'];
 			if ($model->save()) {
-				// @TODO Redirect to Create page, with success message
 				$this->redirect(array(
-					'view',
-					'id' => $model->id
+					'create',
+				    'success' => 1,
 				));
 			}
 		}
