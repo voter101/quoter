@@ -5,7 +5,7 @@
 /* @var $formType string */
 ?>
 
-<div class="form">
+<div class="form formEntryAdd">
 
 	<?php $form = $this->beginWidget('CActiveForm', array(
 		'id' => 'entry-form',
