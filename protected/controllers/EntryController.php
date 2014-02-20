@@ -201,6 +201,7 @@ class EntryController extends Controller {
 	 * @throws CHttpException
 	 */
 	public function loadModel($id, $throwHTTPException = true) {
+		// FIXME Let logged-in users to search any entries!!
 		$model = Entry::model()->findByPk($id, 'status=:status', array(':status' => Entry::PUBLISHED));
 		if ($model === null && $throwHTTPException) {
 			throw new CHttpException(404, 'The requested page does not exist.');
