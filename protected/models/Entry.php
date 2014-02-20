@@ -71,7 +71,7 @@ class Entry extends CActiveRecord {
 			array(
 				'status',
 				'length',
-				'max' => 8
+				'max' => 16
 			),
 			array(
 				'id, content, score, author, type',
