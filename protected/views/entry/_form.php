@@ -68,7 +68,7 @@
 	<?php endif; ?>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('Entry.addForm.create', 'Submit quote') : Yii::t('Entry.addForm.saveChanges', 'Save Changes')); ?>
 	</div>
 
 	<?php $this->endWidget(); ?>
