@@ -93,10 +93,32 @@ header {
   }
 }
 
+.formEntryAdd {
+  margin-top: 20px;
+  label {
+    margin-left: 8px;
+    display: block;
+  }
+  input, textarea {
+    padding: 3px 5px;
+    width: 300px;
+  }
+  textarea {
+    width: 600px;
+  }
+  input[type=submit] {
+    width:200px;
+    margin-top:10px;
+  }
+}
+
 #content {
   display: block;
-  clear: both;
   margin-bottom: 35px;
+  h1 {
+    font-size: $headerFont;
+    margin-bottom: 10px;
+  }
 }
 
 footer {

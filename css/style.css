@@ -122,10 +122,26 @@ header {
     right: 0;
     bottom: 0; }
 
+.formEntryAdd {
+  margin-top: 20px; }
+  .formEntryAdd label {
+    margin-left: 8px;
+    display: block; }
+  .formEntryAdd input, .formEntryAdd textarea {
+    padding: 3px 5px;
+    width: 300px; }
+  .formEntryAdd textarea {
+    width: 600px; }
+  .formEntryAdd input[type=submit] {
+    width: 200px;
+    margin-top: 10px; }
+
 #content {
   display: block;
-  clear: both;
   margin-bottom: 35px; }
+  #content h1 {
+    font-size: 32px;
+    margin-bottom: 10px; }
 
 footer {
   clear: both;
