@@ -3,6 +3,9 @@
 /* @var $model Entry */
 /* @var $form CActiveForm */
 /* @var $formType string */
+/**
+ * @TODO Style-up error messages
+ */
 ?>
 
 <div class="form formEntryAdd">
