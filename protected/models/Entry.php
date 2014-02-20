@@ -163,6 +163,14 @@ class Entry extends CActiveRecord {
 		return Yii::app()->entryScoreManager->Vote($this, $positive);
 	}
 
+	public static function listStatuses() {
+		return array(
+			self::PENDING => Yii::t('Entry.status.pending', 'Pending'),
+			self::QUEUED => Yii::t('Entry.status.queued', 'Queued'),
+			self::PUBLISHED => Yii::t('Entry.status.published', 'Published'),
+		);
+	}
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!

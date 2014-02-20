@@ -7,7 +7,6 @@
  * @TODO Style-up error messages
  */
 ?>
-
 <div class="form formEntryAdd">
 
 	<?php $form = $this->beginWidget('CActiveForm', array(
@@ -59,13 +58,10 @@
 	</div>
 	<?php endif; ?>
 
-	<?php
-	// @TODO status should be a dropdown
-	?>
 	<?php if ($formType == 'create') : ?>
 	<div class="row">
 		<?php echo $form->labelEx($model, 'status'); ?>
-		<?php echo $form->textField($model, 'status'); ?>
+		<?php echo $form->dropDownList($model, 'status', Entry::listStatuses()); ?>
 		<?php echo $form->error($model, 'status'); ?>
 	</div>
 	<?php endif; ?>
