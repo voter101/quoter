@@ -9,8 +9,8 @@ $(document).ready(function () {
 
 function VoteAjax(id, url) {
     $.ajax({url: url})
-        .done(function (html) {
-            var json = $.parseJSON(html);
+        .done(function (output) {
+            var json = $.parseJSON(output);
             UpdateEntryAfterVote(id, json);
         });
 }
