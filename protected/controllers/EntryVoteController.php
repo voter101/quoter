@@ -38,14 +38,4 @@ class EntryVoteController extends Controller {
 		$this->render('delete');
 	}
 
-	public function actionTest() {
-		$entry = Entry::model()->findByPk(1);
-		$vote = new EntryVote;
-		$vote->entry_id = 1;
-		$vote->ip = "127.0.0.1";
-		$vote->positive = 1;
-		$vote->save();
-		var_dump($vote);
-	}
-
 }
