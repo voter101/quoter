@@ -27,7 +27,7 @@ class UserRepositoryTest extends CDbTestCase {
 
 	public function testGetNonExistingUser() {
 		$user = $this->repository->getUser(9001);
-		$this->assertTrue($user === 0);
+		$this->assertTrue($user === null);
 	}
 
 } 
