@@ -2,6 +2,7 @@ assets/*
 !assets/.gitignore
 protected/runtime/*
 protected/config/database.php
+protected/config/test.php
 !protected/runtime/.gitignore
 protected/data/*.db
 themes/classic/views/
