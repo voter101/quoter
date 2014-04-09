@@ -1,5 +1,6 @@
 <?php
 
+Yii::import('application.models.User');
 Yii::import('application.repositories.UserRepository');
 
 class UserRepositoryTest extends CDbTestCase {
@@ -9,17 +10,17 @@ class UserRepositoryTest extends CDbTestCase {
 	 */
 	public $repository;
 
-	public $fixtures = [
+	protected $fixtures = [
 		'users' => 'User'
 	];
 
 	public function setUp() {
 		$this->repository = new UserRepository();
+		parent::setUp();
 	}
 
 	public function testGetExistingUser() {
 		$user = $this->repository->getUser(1);
-		$this->assertTrue(true);
 		$this->assertTrue($user != null);
 		$this->assertTrue($user instanceof User);
 	}
