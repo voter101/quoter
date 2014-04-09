@@ -9,7 +9,9 @@ return array(
 	'import' => array(
 		'application.models.*',
 		'application.components.*',
-		'application.components.exceptions.*',
+		'application.exceptions.*',
+		'application.services.*',
+		'application.repositories.*'
 	),
 
 	'modules' => array(
