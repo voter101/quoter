@@ -29,7 +29,12 @@ class User extends CActiveRecord {
 				'max' => 64
 			),
 			array(
-				'salt, token',
+				'salt',
+			    'length',
+			    'max' => 48
+			),
+			array(
+				'token',
 				'length',
 				'max' => 32
 			),

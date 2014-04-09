@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(256) NOT NULL,
   `password` varchar(64) NOT NULL,
-  `salt` varchar(32) NOT NULL,
+  `salt` varchar(48) NOT NULL,
   `token` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
