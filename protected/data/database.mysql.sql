@@ -20,6 +20,14 @@ CREATE TABLE IF NOT EXISTS `entry_vote` (
   KEY `id` (`entry_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-
 ALTER TABLE `entry_vote`
 ADD CONSTRAINT `entry_vote_ibfk_1` FOREIGN KEY (`entry_id`) REFERENCES `entry` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(256) NOT NULL,
+  `password` varchar(64) NOT NULL,
+  `salt` varchar(32) NOT NULL,
+  `token` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
