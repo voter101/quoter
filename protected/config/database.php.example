@@ -7,3 +7,12 @@ $db = array(
 	'charset' => 'utf8',
 	'tablePrefix' => '',
 );
+
+$dbTest = array (
+	'connectionString' => 'mysql:host=localhost;dbname=quoter-test',
+	'emulatePrepare' => true,
+	'username' => 'root',
+	'password' => '',
+	'charset' => 'utf8',
+	'tablePrefix' => '',
+);
