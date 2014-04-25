@@ -52,8 +52,9 @@ class EntryController extends Controller {
 	}
 
 	public function actionView($id) {
+		$entry = $this->service()->get($id);
 		$this->render('view', array(
-			'model' => $this->loadModel($id),
+			'model' => $entry
 		));
 	}
 
@@ -215,5 +216,13 @@ class EntryController extends Controller {
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+	private $_service;
+	private function service() {
+		if (!isset ($this->_service)) {
+			$this->_service = new EntriesService(new Entry);
+		}
+		return $this->_service;
 	}
 }
