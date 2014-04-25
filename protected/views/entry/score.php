@@ -1,6 +1,9 @@
 <?php
 /* @var $this EntryController */
 /* @var $data Entry */
+/**
+ * @todo @fixme @enterprise This view made me cry about myself
+ */
 $cookieSign = EntryScoreManager::GetVoteCookieSign($data->id);
 $voteDownHtmlOptions = array(
 	'class' => 'voteDown',

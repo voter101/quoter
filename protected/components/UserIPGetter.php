@@ -1,10 +1,6 @@
 <?php
 
-class UserIP {
-
-	private function __construct() {
-
-	}
+class UserIPGetter {
 
 	public static function getUserIP() {
 		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {

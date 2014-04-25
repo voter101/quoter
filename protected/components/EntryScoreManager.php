@@ -13,6 +13,11 @@ class EntryScoreManager extends CComponent {
 	 * @var EntryVoteMessage
 	 */
 	private $_voteMessage;
+	private $_ipGetter;
+
+	public function __construct(UserIPGetter $IPGetter) {
+		$this->_ipGetter = $IPGetter;
+	}
 
 	public function init() {
 
@@ -55,7 +60,7 @@ class EntryScoreManager extends CComponent {
 
 	private function getPreviousVotes() {
 		return EntryVote::model()->findAll('ip=:ip AND entry_id=:id', array(
-			':ip' => UserIP::getUserIP(),
+			':ip' => $this->_ipGetter->getUserIP(),
 			':id' => $this->_entry->id,
 		));
 	}
@@ -63,7 +68,7 @@ class EntryScoreManager extends CComponent {
 	private function insertVote($positive) {
 		$vote = new EntryVote();
 		$vote->entry_id = (int)$this->_entry->id;
-		$vote->ip = UserIP::getUserIP();
+		$vote->ip = $this->_ipGetter->getUserIP();
 		$vote->positive = (int)$positive;
 		$this->handleEntryScore($positive);
 		$this->_entry->entryVotes = array($vote);
@@ -95,8 +100,7 @@ class EntryScoreManager extends CComponent {
 		if ($positive == $previousVote->positive) {
 			$this->_voteMessage->setMessage(Yii::t("EntryVote.voteUpdate.noActionNeeded", "Sorry, but you have already voted"));
 
-			return true;
-		}
+			return true; }
 
 		$previousVote->positive = $positive;
 		if ($previousVote->save() == false) {
